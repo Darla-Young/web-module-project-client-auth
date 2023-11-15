@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { setError } from "../state/action-creators";
+import PropTypes from 'prop-types';
 
-export default function Login (props) {
- const [ user, setUser ] = useState({username: '', password: ''})
- const [ error, setError ] = useState('');
+function Login (props) {
+ const { errMessage, setError } = props;
+ const [ user, setUser ] = useState({username: '', password: ''});
 
  const navigate = useNavigate();
-
- // const axiosWithAuth = () => {
- //  const token = localStorage.getItem('token');
- //  return axios.create({
- //   headers: {
- //    Authorization: token,
- //   },
- //  });
- // }
 
   // if (!localStorage.getItem('token')) {
   //  return <Navigate to='/login' />
@@ -37,7 +31,7 @@ export default function Login (props) {
     console.log(res);
     localStorage.setItem('token', res.data.token);
     setError('');
-    navigate('/friendlist');
+    navigate('/friends');
    })
    .catch(err => {
     console.log(err);
@@ -57,9 +51,21 @@ export default function Login (props) {
      PASSWORD <br/>
      <input id="password" className="login password input" type="password" onChange={onChange} value={user.password} ></input>
     </label><br/>
-    {error ? <p className="login error">{error}</p> : null}
+    {errMessage ? <p className="login error">{errMessage}</p> : null}
     <button className="login submit button" type="submit">SUBMIT</button>
    </form>
   </div>
  )
 }
+
+Login.propTypes = {
+ errMessage: PropTypes.string,
+ setError: PropTypes.func,
+}
+
+const mapState = state => ({
+ ...state,
+ errMessage: state.errMessage
+});
+
+export default connect(mapState,{ setError })(Login)

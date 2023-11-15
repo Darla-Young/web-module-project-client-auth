@@ -1,11 +1,18 @@
 /* GLOBAL */
 .App {
-  text-align: center;
-  font-family: sans-serif;
-  font-weight: 900;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ font-family: sans-serif;
+ font-weight: 900;
 }
 
 .main {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
  width: 100vw;
  height: 100%;
 }
@@ -16,6 +23,11 @@
  background-color: black;
  height: 100%;
  font-weight: 700;
+}
+
+.h1 {
+ font-size: 4em;
+ font-weight: 950;
 }
 
 /* HEADER */
@@ -58,11 +70,6 @@
  width: 50%
 }
 
-.login.h1 {
- font-size: 4em;
- font-weight: 950;
-}
-
 .label.login {
  display: flex;
  flex-direction: column;
@@ -75,4 +82,27 @@
  background-color: black;
  width: 100%;
  padding: 20px 0;
+}
+
+/* FRIENDLIST */
+#friendlist {
+ width: 35vw;
+}
+
+.friendlist {
+ margin-bottom: 0;
+}
+
+.friendlist.h1 {
+ display: flex;
+ justify-content: center;
+ width: 100%;
+}
+
+#friendlistContainer {
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ align-items: flex-start;
 }

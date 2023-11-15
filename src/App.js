@@ -1,22 +1,41 @@
+// REACT
 import React from 'react';
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
+
+// COMPONENTS
+import './App.css';
 import Header from './components/header';
 import Login from './components/login';
 import Friendlist from './components/friendlist';
 import Addfriend from './components/addfriend';
 
+// REDUX
+import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import reducer from './state/reducer';
+let store
+export const resetStore = () => {
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
+}
+resetStore()
+
+
+
 function App() {
   return (
-   <div className="App">
-    <Header />
-    <Routes>
-     <Route path="/" element={<Login />} />
-     <Route path="/login" element={<Login />} />
-     <Route path="/friendlist" element={<Friendlist />} />
-     <Route path="/addfriend" element={<Addfriend />} />
-    </Routes>
-   </div>
+   <Provider store={store}>
+    <div className="App">
+     <Header />
+     <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/friends" element={<Friendlist />} />
+      <Route path="/addfriend" element={<Addfriend />} />
+     </Routes>
+    </div>
+   </Provider>
   );
 }
 
