@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {
- ADD_FRIEND,
+ NEW_FRIEND,
  SET_ERROR,
  GET_FRIENDS,
 } from './action-types';
@@ -8,6 +8,7 @@ import {
 function error (state = '', action) {
  switch(action.type) {
   case SET_ERROR:
+   console.log(action.payload);
    return action.payload;
   default:
    return state;
@@ -23,14 +24,9 @@ function friendlist (state = [], action) {
  }
 }
 
-const friend = {
- name: '',
- age: '',
- email: '',
-}
-function addFriend (state = friend, action) {
+function newFriend (state = {name:'',age:'',email:''}, action) {
  switch(action.type) {
-  case ADD_FRIEND:
+  case NEW_FRIEND:
    return {
     ...state,
     [action.payload.id]: action.payload.value
@@ -43,5 +39,5 @@ function addFriend (state = friend, action) {
 export default combineReducers({
  error,
  friendlist,
- addFriend,
+ newFriend,
 });

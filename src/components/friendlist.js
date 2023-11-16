@@ -3,16 +3,23 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { getFriends } from "../state/action-creators";
 import selectors from "../state/selectors";
+import { useNavigate } from 'react-router-dom';
 
 function Friendlist (props) {
- const { friendlist, getFriends } = props;
+ const { friendlist, getFriends, errMessage } = props;
+ 
+ const navigate = useNavigate();
 
  useEffect(() => {
-  getFriends();
- },[])
+  if (!localStorage.getItem('token')) {
+   return navigate('/login');
+  } else {getFriends()}
+ },[]);
 
  return (
   <div id="friendlist" className="friendlist main container" >
+   {/*  */}
+   <div className="error">{errMessage ? {errMessage} : ''}</div>
    <h1 className="friendlist h1" >FRIENDS LIST</h1>
    <div id="friendlistContainer" className="friendlist list container">
     {(friendlist || []).map(friend => {
@@ -28,11 +35,13 @@ function Friendlist (props) {
 Friendlist.propTypes = {
  friendlist: PropTypes.array,
  getFriends: PropTypes.func,
+ errMessage: PropTypes.string,
 }
 
 const mapState = state => ({
  ...state,
  friendlist: selectors.friendSelector(state),
+ errMessage: selectors.selectErrMessage(state),
 });
 
 export default connect(mapState,{ getFriends })(Friendlist);

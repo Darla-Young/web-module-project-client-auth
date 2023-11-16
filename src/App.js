@@ -32,7 +32,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/friends" element={<Friendlist />} />
-      <Route path="/addfriend" element={<Addfriend />} />
+      <Route path="/friends/add" element={<Addfriend />} />
      </Routes>
     </div>
    </Provider>

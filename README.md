@@ -61,10 +61,10 @@ Each friend object has the format:
 
 #### Build the addFriends component
 
-* [ ] Use the [mockup provided](./addfriends_mockup.png) to build out a simple component allowing you to collect data to add in a new friend.
-* [ ] The component should include a form with inputs for each friend attribute and a submit button.
-* [ ] When submitting the form, make a call to the approprate api endpoint with your new friend data. Remember that this is a protected route.
-* [ ] In `App.js`, add a route to allow this component to be displayed when navigating to `/friends/add`.
+* [x] Use the [mockup provided](./addfriends_mockup.png) to build out a simple component allowing you to collect data to add in a new friend.
+* [x] The component should include a form with inputs for each friend attribute and a submit button.
+* [x] When submitting the form, make a call to the approprate api endpoint with your new friend data. Remember that this is a protected route.
+* [x] In `App.js`, add a route to allow this component to be displayed when navigating to `/friends/add`.
 
 #### Build a logout button
 

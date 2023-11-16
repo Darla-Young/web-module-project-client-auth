@@ -56,32 +56,36 @@
  margin-right: 10px;
 }
 
-/* LOGIN */
-#login {
+/* FORMS */
+.form {
  display: flex;
  flex-direction: column;
- height: 100vh;
  align-items: center;
+ justify-content: flex-start;
 }
 
-#loginContainer {
+.form.container {
  display: flex;
  flex-direction: column;
- width: 50%
+ width: 60%
 }
 
-.label.login {
+.form.label.container {
  display: flex;
  flex-direction: column;
  align-items: flex-start;
  width: 100%;
 }
 
-.input.login {
+.form.input {
  color: white;
  background-color: black;
  width: 100%;
  padding: 20px 0;
+}
+
+.form.button {
+ width: 100%;
 }
 
 /* FRIENDLIST */
@@ -97,6 +101,7 @@
  display: flex;
  justify-content: center;
  width: 100%;
+ margin-top: 0;
 }
 
 #friendlistContainer {
@@ -105,4 +110,15 @@
  flex-direction: column;
  justify-content: flex-start;
  align-items: flex-start;
+}
+
+/* ERRORS */
+.error {
+ width: 100vw;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: red;
+ font-size: 2.5rem;
+ padding-top: 20px;
 }

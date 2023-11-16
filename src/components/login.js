@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setError } from "../state/action-creators";
 import PropTypes from 'prop-types';
+import selectors from "../state/selectors";
 
 function Login (props) {
  const { errMessage, setError } = props;
  const [ user, setUser ] = useState({username: '', password: ''});
 
  const navigate = useNavigate();
-
-  // if (!localStorage.getItem('token')) {
-  //  return <Navigate to='/login' />
-  // }
+ 
+ useEffect(() => {
+  if (localStorage.getItem('token')) {
+   return navigate('/friends');
+  }
+ },[]);
+ 
 
  const onChange = evt => {
   const id = evt.target.id;
@@ -28,7 +32,6 @@ function Login (props) {
   axios
    .post('http://localhost:9000/api/login', user)
    .then(res => {
-    console.log(res);
     localStorage.setItem('token', res.data.token);
     setError('');
     navigate('/friends');
@@ -40,19 +43,19 @@ function Login (props) {
  }
 
  return (
-  <div id="login" className="login main container" >
-   <h1 className="login h1" >LOGIN</h1>
-   <form id="loginContainer" className="login container" onSubmit={onSubmit} >
-    <label className="login username label container" >
+  <div id="login" className="form login main container" >
+   <div className="error">{errMessage ? {errMessage} : ''}</div>
+   <h1 className="form login h1" >LOGIN</h1>
+   <form id="loginContainer" className="form login container" onSubmit={onSubmit} >
+    <label className="form login username label container" >
      USERNAME <br/>
-     <input id="username" className="login username input" type="text" onChange={onChange} value={user.username} ></input>
+     <input id="username" className="form login username input" type="text" onChange={onChange} value={user.username} ></input>
     </label><br/>
-    <label className="login password label container" >
+    <label className="form login password label container" >
      PASSWORD <br/>
-     <input id="password" className="login password input" type="password" onChange={onChange} value={user.password} ></input>
+     <input id="password" className="form login password input" type="password" onChange={onChange} value={user.password} ></input>
     </label><br/>
-    {errMessage ? <p className="login error">{errMessage}</p> : null}
-    <button className="login submit button" type="submit">SUBMIT</button>
+    <button className="form login submit button" type="submit">SUBMIT</button>
    </form>
   </div>
  )
@@ -65,7 +68,7 @@ Login.propTypes = {
 
 const mapState = state => ({
  ...state,
- errMessage: state.errMessage
+ errMessage: selectors.selectErrMessage(state),
 });
 
 export default connect(mapState,{ setError })(Login)
