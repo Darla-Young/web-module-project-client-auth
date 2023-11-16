@@ -8,7 +8,6 @@ import {
 function error (state = '', action) {
  switch(action.type) {
   case SET_ERROR:
-   console.log(action.payload);
    return action.payload;
   default:
    return state;

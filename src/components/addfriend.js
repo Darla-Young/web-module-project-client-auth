@@ -35,7 +35,7 @@ function Addfriend (props) {
 
  return (
   <div id="addfriend" className="form addfriend main container" >
-   <div className="error">{errMessage ? {errMessage} : ''}</div>
+   <div className="error">{errMessage ? errMessage : ''}</div>
    <h1 className="form addfriend h1" >ADD FRIEND</h1>
    <form id="addfriendContainer" className="form addfriend container" onSubmit={onSubmit} >
     <label className="form addfriend name label container" >

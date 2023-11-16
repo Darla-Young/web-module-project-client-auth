@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Friendlist (props) {
  const { friendlist, getFriends, errMessage } = props;
- 
+
  const navigate = useNavigate();
 
  useEffect(() => {
@@ -19,7 +19,7 @@ function Friendlist (props) {
  return (
   <div id="friendlist" className="friendlist main container" >
    {/*  */}
-   <div className="error">{errMessage ? {errMessage} : ''}</div>
+   <div className="error">{errMessage ? errMessage : ''}</div>
    <h1 className="friendlist h1" >FRIENDS LIST</h1>
    <div id="friendlistContainer" className="friendlist list container">
     {(friendlist || []).map(friend => {

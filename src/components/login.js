@@ -37,14 +37,13 @@ function Login (props) {
     navigate('/friends');
    })
    .catch(err => {
-    console.log(err);
     setError(err.response.data.error)
    });
  }
 
  return (
   <div id="login" className="form login main container" >
-   <div className="error">{errMessage ? {errMessage} : ''}</div>
+   <div className="error">{errMessage ? errMessage : ''}</div>
    <h1 className="form login h1" >LOGIN</h1>
    <form id="loginContainer" className="form login container" onSubmit={onSubmit} >
     <label className="form login username label container" >
